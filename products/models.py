@@ -17,3 +17,24 @@ class Product(models.Model):
             return f"Age {self.minimum_age_appropriate}"
         else:
             return f"Ages {self.minimum_age_appropriate} to {self.maximum_age_appropriate}"
+          
+    def random_image(self):
+        if not self.productimage_set.all().exists():
+          return None
+        else:
+          return self.productimage_set.all().order_by('?')[0]
+
+  
+
+
+class ProductImage(models.Model):
+  image = models.ImageField(upload_to='product_images/')
+  caption = models.CharField(max_length=30)
+  product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return str(self.caption)
+    
+    
+  
+          

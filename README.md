@@ -8,5 +8,7 @@
 
 ## Feedback
 
-Once you commit and submit your work to Github, I'll update this section with feedback.
+N
+
+There's a bug when `reset filters` is clicked; the app crashes because of a `None` query value.  Inspecting the logic in the view function should help to see what the problem is.
 

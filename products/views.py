@@ -8,7 +8,9 @@ def index(request):
     form = ProductFilterForm(request.GET)
     if request.GET != {}: #check for query parameters in the get request
       toSort = request.GET.get('sort')
-      if toSort != None:
+      if request.GET.get('reset'):
+        products = Product.objects.all().order_by('name') #if no filters present use name
+      elif toSort != None:
         products = Product.objects.all().order_by(toSort) #sort by this
         request.session['sort'] = toSort
       else:
